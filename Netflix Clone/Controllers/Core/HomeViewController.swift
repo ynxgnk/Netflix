@@ -38,9 +38,8 @@ class HomeViewController: UIViewController {
 //        homeFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450)) /* 76 */
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500)) /* 91 */
         homeFeedTable.tableHeaderView = headerView /* 92 */
-        
+//        navigationController?.pushViewController(TitlePreviewViewController(), animated: true) /* 565 */
 //        APICaller.shared.getMovie(with: "Harry Potter") { result in /* 504 */}
-        
 //        fetchData() /* 169 */
     }
     
@@ -93,6 +92,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource { /* 35
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { /* 38 */ /* 54 change "cell" and add guard */
          return UITableViewCell() /* 55 */
         }
+        
+        cell.delegate = self /* 597 */
 //        cell.textLabel?.text = "Hello world" /* 39 */
 //        cell.backgroundColor = .red /* 45 */
         switch indexPath.section { /* 269 */
@@ -185,4 +186,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource { /* 35
     }
     
     
+}
+
+extension HomeViewController: CollectionViewTableViewCellDelegate { /* 592 */
+    func collectionViewTableViewCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) { /* 593 */
+        DispatchQueue.main.async { [weak self] in /* 598 */
+            let vc = TitlePreviewViewController() /* 594 */
+            vc.configure(with: viewModel) /* 595 */
+            self?.navigationController?.pushViewController(vc, animated: true) /* 596 */
+        }
+    }
 }

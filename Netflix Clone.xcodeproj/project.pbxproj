@@ -30,6 +30,7 @@
 		BAAE42F72A1744240002F97B /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */; };
 		BAAE42FB2A1750E70002F97B /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */; };
 		BAAE42FD2A17547B0002F97B /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */; };
+		BAAE42FF2A17A5FA0002F97B /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FE2A17A5FA0002F97B /* TitlePreviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		BAAE42FE2A17A5FA0002F97B /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				BAAE42F42A1737370002F97B /* TitleViewModel.swift */,
+				BAAE42FE2A17A5FA0002F97B /* TitlePreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				BAAE42D92A1645DC0002F97B /* DownloadsViewController.swift in Sources */,
 				BAAE42BE2A16434A0002F97B /* AppDelegate.swift in Sources */,
 				BAAE42EC2A1728090002F97B /* TitleCollectionViewCell.swift in Sources */,
+				BAAE42FF2A17A5FA0002F97B /* TitlePreviewViewModel.swift in Sources */,
 				BAAE42FD2A17547B0002F97B /* TitlePreviewViewController.swift in Sources */,
 				BAAE42E82A171AB50002F97B /* Extensions.swift in Sources */,
 				BAAE42C02A16434A0002F97B /* SceneDelegate.swift in Sources */,

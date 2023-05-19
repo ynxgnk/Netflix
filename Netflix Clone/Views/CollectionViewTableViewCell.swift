@@ -7,9 +7,15 @@
 
 import UIKit
 
-class CollectionViewTableViewCell: UITableViewCell {
+protocol CollectionViewTableViewCellDelegate: AnyObject { /* 581 */
+    func collectionViewTableViewCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) /* 582 */
+}
 
+class CollectionViewTableViewCell: UITableViewCell {
+    
     static let identifier = "CollectionViewTableViewCell" /* 46 */
+    
+    weak var delegate: CollectionViewTableViewCellDelegate? /* 583 */
     
     private var titles: [Title] = [Title]() /* 266 */
     
@@ -76,10 +82,20 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource, UICollectionV
             return /* 518 */
         }
         
-        APICaller.shared.getMovie(with: titleName + " trailer") { result in /* 519 */
+        APICaller.shared.getMovie(with: titleName + " trailer") { [weak self] result in /* 519 */ /* 587 add weak self */
             switch result { /* 520 */
             case .success(let videoElement): /* 521 */
-                print(videoElement.id) /* 523 */
+                let title = self?.titles[indexPath.row] /* 584 */
+                guard let titleOverview = title?.overview else { /* 588 */
+                    return /* 589 */
+                }
+                guard let strongSelf = self else { /* 590 */
+                    return /* 591 */
+                }
+                
+                let viewModel = TitlePreviewViewModel(title: titleName, yutubeView: videoElement, titleOverview: titleOverview) /* 585 */
+                self?.delegate?.collectionViewTableViewCell(strongSelf, viewModel: viewModel) /* 586 */
+//                print(videoElement.id) /* 523 */
             case .failure(let error): /* 522 */
                 print(error.localizedDescription) /* 523 */
             }
