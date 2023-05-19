@@ -53,7 +53,7 @@ class APICaller { /* 151 */
             do { /* 191 */
                 //                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) /* 192 */
                 let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data) /* 203 */
-//                print(results) /* 193 */
+                completion(.success(results.results)) /* 193 */
             }
             catch { /* 194 */
                 completion(.failure(APIError.failedToGetData)) /* 195 */
@@ -72,7 +72,7 @@ class APICaller { /* 151 */
             
             do { /* 209 */
                 let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data) /* 212 */
-//                print(results) /* 213 */
+                completion(.success(results.results)) /* 213 */
             }
             catch { /* 210 */
                 completion(.failure(APIError.failedToGetData)) /* 211 */
@@ -90,7 +90,7 @@ class APICaller { /* 151 */
             
             do {
                 let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data) /* 221 */
-//                print(results) /* 222 */
+                completion(.success(results.results)) /* 222 */
             }
             catch {
                 completion(.failure(APIError.failedToGetData)) /* 223 */
@@ -108,13 +108,33 @@ class APICaller { /* 151 */
             
             do { /* 231 */
                 let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data) /* 232 */
-//                print(results) /* 233 */
+                completion(.success(results.results)) /* 233 */ 
             }
             catch { /* 234 */
                 completion(.failure(APIError.failedToGetData)) /* 235 */
             }
         }
         task.resume() /* 236 */ 
+    }
+    
+    func getDiscoverMovies(completion: @escaping (Result<[Title], Error>) -> Void) { /* 405 */
+        guard let url = URL(string: "\(Constants.baseURL)/3/discover/movie?api_key=\(Constants.API_KEY)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate") else { /* 406 */
+            return /* 407 */
+        }
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data , _, error in /* 408 */
+            guard let data = data, error == nil else { /* 409 */
+                return /* 410 */
+            }
+            
+            do { /* 411 */
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data) /* 412 */
+                completion(.success(results.results)) /* 413 */
+            }
+            catch { /* 414 */
+                completion(.failure(APIError.failedToGetData)) /* 415 */
+            }
+        }
+        task.resume() /* 416 */
     }
 }
 

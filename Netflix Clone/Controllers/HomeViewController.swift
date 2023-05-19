@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum Sections: Int { /* 255 */
+    case TrendingMovies = 0 /* 256 */
+    case TrendingTv = 1 /* 257 */
+    case Popular = 2 /* 258 */
+    case Upcoming = 3 /* 259 */
+    case TopRated = 4 /* 260 */
+}
+
 class HomeViewController: UIViewController {
     
     let sectionTitles: [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top Rated"] /* 140 */
@@ -31,7 +39,7 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500)) /* 91 */
         homeFeedTable.tableHeaderView = headerView /* 92 */
         
-        fetchData() /* 169 */
+//        fetchData() /* 169 */
     }
     
     private func configureNavbar() { /* 127 */
@@ -52,32 +60,20 @@ class HomeViewController: UIViewController {
         homeFeedTable.frame = view.bounds /* 32 */
     }
     
-    private func fetchData() { /* 167 */
-//        APICaller.shared.getTrendingMovies { results in /* 168 */
-//            switch results { /* 179 */
-//            case .success(let movies): /* 180 */
-//                print(movies)
-//            case .failure(let error): /* 180 */
-//                print(error)
-//            }
-//        }
-        
-//        APICaller.shared.getTrendingTvs { results in /* 197 */
-//
-//        }
-        
-//        APICaller.shared.getUpcomingMovies { _ in /* 214 */
-//
-//        }
-        
-//        APICaller.shared.getPopular { _ in /* 225 */
-//
-//        }
-        
-        APICaller.shared.getTopRated { _ in /* 237 */
-            
-        }
-    }
+//    private func fetchData() { /* 167 */
+        //        APICaller.shared.getTrendingMovies { results in /* 168 */
+        //            switch results { /* 179 */
+        //            case .success(let movies): /* 180 */
+        //                print(movies)
+        //            case .failure(let error): /* 180 */
+        //                print(error)
+        //            }
+        //        }
+        //        APICaller.shared.getTrendingTvs { results in /* 197 */}
+        //        APICaller.shared.getPopular { _ in /* 225 */ ]
+        //        APICaller.shared.getUpcomingMovies { _ in /* 214 */ }
+        //    APICaller.shared.getTopRated { _ in /* 237 */}
+//    }
     
 }
 
@@ -97,6 +93,56 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource { /* 35
         }
 //        cell.textLabel?.text = "Hello world" /* 39 */
 //        cell.backgroundColor = .red /* 45 */
+        switch indexPath.section { /* 269 */
+        case Sections.TrendingMovies.rawValue: /* 270 */
+            APICaller.shared.getTrendingMovies { result in /* 271 */
+                switch result { /* 272 */
+                case .success(let titles): /* 273 */
+                    cell.configure(with: titles) /* 274 */
+                case .failure(let error): /* 273 */
+                    print(error.localizedDescription) /* 274 */
+                }
+            }
+        case Sections.TrendingTv.rawValue: /* 270 */
+            APICaller.shared.getTrendingTvs { result in /* 275 */
+                switch result { /* 276 */
+                case .success(let titles): /* 277 */
+                    cell.configure(with: titles) /* 278 */
+                case .failure(let error): /* 277 */
+                    print(error.localizedDescription) /* 278 */
+                }
+            }
+        case Sections.Popular.rawValue: /* 270 */
+            APICaller.shared.getPopular { result in /* 279 */
+                switch result { /* 280 */
+                case .success(let titles): /* 281 */
+                    cell.configure(with: titles) /* 282 */
+                case .failure(let error): /* 281 */
+                    print(error.localizedDescription) /* 282 */
+                }
+            }
+        case Sections.Upcoming.rawValue: /* 270 */
+            APICaller.shared.getUpcomingMovies { result in /* 283 */
+                switch result { /* 284 */
+                case .success(let titles): /* 285 */
+                    cell.configure(with: titles) /* 286 */
+                case .failure(let error): /* 285 */
+                    print(error.localizedDescription) /* 286 */
+                }
+            }
+        case Sections.TopRated.rawValue: /* 270 */
+            APICaller.shared.getTopRated { result in /* 287 */
+                switch result { /* 288 */
+                case .success(let titles): /* 289 */
+                    cell.configure(with: titles) /* 290 */
+                case .failure(let error): /* 289 */
+                    print(error.localizedDescription) /* 290 */
+                }
+            }
+        default: /* 270 */
+            return UITableViewCell() /* 291 */
+        }
+        
         return cell /* 40 */
     }
     
