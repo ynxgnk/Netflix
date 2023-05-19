@@ -72,4 +72,28 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource { /
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { /* 376 */
         return 150 /* 377 */
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { /* 614 */
+        tableView.deselectRow(at: indexPath, animated: true) /* 615 */
+        
+        let title = titles[indexPath.row] /* 616 */
+        
+        guard let titleName = title.original_title ?? title.original_name else { /* 617 */
+            return /* 618 */
+        }
+        
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in /* 619 */
+            switch result { /* 620 */
+            case .success(let videoElement): /* 621 */
+                DispatchQueue.main.async { /* 626 */
+                    let vc = TitlePreviewViewController() /* 622 */
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, yutubeView: videoElement, titleOverview: title.overview ?? "")) /* 623 */
+                    self?.navigationController?.pushViewController(vc, animated: true) /* 624 */
+                }
+            case .failure(let error): /* 621 */
+                print(error.localizedDescription) /* 625 */
+            
+            }
+        }
+    }
 }

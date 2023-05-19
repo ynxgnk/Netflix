@@ -85,6 +85,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource { /* 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { /* 431 */
         return 150 /* 432 */
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { /* 627 */
+        tableView.deselectRow(at: indexPath, animated: true) /* 628 */
+        
+        let title = titles[indexPath.row] /* 629 */
+        
+        guard let titleName = title.original_title ?? title.original_name else { /* 630 */
+            return /* 631 */
+        }
+        
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in /* 632 */
+            switch result { /* 633 */
+            case .success(let videoElement): /* 634 */
+                DispatchQueue.main.async { /* 635 */
+                    let vc = TitlePreviewViewController() /* 636 */
+                    vc.configure(with: TitlePreviewViewModel(title: titleName, yutubeView: videoElement, titleOverview: title.overview ?? "")) /* 637 */
+                    self?.navigationController?.pushViewController(vc, animated: true) /* 638 */
+                }
+            case .failure(let error): /* 639 */
+                print(error.localizedDescription) /* 640 */
+            
+            }
+        }
+    }
+    
 }
 
 extension SearchViewController: UISearchResultsUpdating { /* 476 */

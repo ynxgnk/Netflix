@@ -17,6 +17,9 @@ enum Sections: Int { /* 255 */
 
 class HomeViewController: UIViewController {
     
+    private var randomTrandingMovie: Title? /* 599 */
+    private var headerView: HeroHeaderUIView? /* 600 */
+    
     let sectionTitles: [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top Rated"] /* 140 */
     
     private let homeFeedTable: UITableView = { /* 25 */
@@ -36,11 +39,27 @@ class HomeViewController: UIViewController {
         configureNavbar() /* 128 */
         
 //        homeFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450)) /* 76 */
-        let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500)) /* 91 */
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500)) /* 91 */ /* 601 remove let */
         homeFeedTable.tableHeaderView = headerView /* 92 */
+        configureHeroHeaderView() /* 613 */
 //        navigationController?.pushViewController(TitlePreviewViewController(), animated: true) /* 565 */
 //        APICaller.shared.getMovie(with: "Harry Potter") { result in /* 504 */}
 //        fetchData() /* 169 */
+    }
+    
+    private func configureHeroHeaderView() { /* 602 */
+        APICaller.shared.getTrendingMovies { [weak self] result in /* 603 */
+            switch result { /* 604 */
+            case .success(let titles): /* 605 */
+                let selectedTitle = titles.randomElement() /* 611 */
+                
+                self?.randomTrandingMovie = selectedTitle /* 606 */
+                
+                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.original_name ?? "", posterURL: selectedTitle?.poster_path ?? "")) /* 612 */
+            case .failure(let error): /* 605 */
+                print(error.localizedDescription) /* 606 */
+            }
+        }
     }
     
     private func configureNavbar() { /* 127 */
