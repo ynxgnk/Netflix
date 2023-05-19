@@ -31,6 +31,8 @@
 		BAAE42FB2A1750E70002F97B /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */; };
 		BAAE42FD2A17547B0002F97B /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */; };
 		BAAE42FF2A17A5FA0002F97B /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FE2A17A5FA0002F97B /* TitlePreviewViewModel.swift */; };
+		BAAE43252A17B8160002F97B /* NetflixCloneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAAE43232A17B8150002F97B /* NetflixCloneModel.xcdatamodeld */; };
+		BAAE43272A17BAE70002F97B /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE43262A17BAE70002F97B /* DataPersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
 		BAAE42FE2A17A5FA0002F97B /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
+		BAAE43242A17B8150002F97B /* NetflixCloneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetflixCloneModel.xcdatamodel; sourceTree = "<group>"; };
+		BAAE43262A17BAE70002F97B /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 				BAAE42C62A16434C0002F97B /* Assets.xcassets */,
 				BAAE42C82A16434C0002F97B /* LaunchScreen.storyboard */,
 				BAAE42CB2A16434C0002F97B /* Info.plist */,
+				BAAE43232A17B8150002F97B /* NetflixCloneModel.xcdatamodeld */,
 			);
 			path = "Netflix Clone";
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				BAAE42E32A166B630002F97B /* APICaller.swift */,
+				BAAE43262A17BAE70002F97B /* DataPersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -275,11 +281,13 @@
 				BAAE42C02A16434A0002F97B /* SceneDelegate.swift in Sources */,
 				BAAE42F32A1734D10002F97B /* TitleTableViewCell.swift in Sources */,
 				BAAE42FB2A1750E70002F97B /* YoutubeSearchResponse.swift in Sources */,
+				BAAE43252A17B8160002F97B /* NetflixCloneModel.xcdatamodeld in Sources */,
 				BAAE42D52A1645A30002F97B /* UpcomingViewController.swift in Sources */,
 				BAAE42E62A166E540002F97B /* Title.swift in Sources */,
 				BAAE42F52A1737370002F97B /* TitleViewModel.swift in Sources */,
 				BAAE42EA2A171D7A0002F97B /* Tv.swift in Sources */,
 				BAAE42D32A1645840002F97B /* HomeViewController.swift in Sources */,
+				BAAE43272A17BAE70002F97B /* DataPersistenceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +432,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,6 +459,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -509,6 +519,19 @@
 			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		BAAE43232A17B8150002F97B /* NetflixCloneModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BAAE43242A17B8150002F97B /* NetflixCloneModel.xcdatamodel */,
+			);
+			currentVersion = BAAE43242A17B8150002F97B /* NetflixCloneModel.xcdatamodel */;
+			path = NetflixCloneModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BAAE42B22A16434A0002F97B /* Project object */;
 }

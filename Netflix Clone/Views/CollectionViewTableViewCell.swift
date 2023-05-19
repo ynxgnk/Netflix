@@ -53,6 +53,21 @@ class CollectionViewTableViewCell: UITableViewCell {
             self?.collectionView.reloadData() /* 298 */
         }
     }
+    
+    private func downloadTitleAt(indexPath: IndexPath) { /* 666 */
+        
+        DataPersistenceManager.shared.downloadTitleWith(model: titles[indexPath.row]) { result in /* 690 */
+            switch  result { /* 691 */
+            case .success(_): /* 692 */
+//                print("downloaded to database") /* 693 */
+                NotificationCenter.default.post(name: Notification.Name("Downloaded"), object: nil) /* 761 */
+            case .failure(let error): /* 692 */
+                print(error.localizedDescription) /* 693 */
+                
+            }
+        }
+//        print("Downloading \(titles[indexPath.row].original_title)") /* 669 */
+    }
 
 }
 
@@ -102,22 +117,24 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource, UICollectionV
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? { /* 660 to download title with long animation */
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? { /* 660 to download title with long animation */
         let config = UIContextMenuConfiguration(
             identifier: nil,
-            previewProvider: nil) { _ in /* 661 */
+            previewProvider: nil) { [weak self] _ in /* 661 */ /* 667 add weak self */
                 let downloadAction = UIAction(title: "Download",
                                               subtitle: nil,
                                               image: nil,
                                               identifier: nil,
                                               discoverabilityTitle: nil,
                                               state: .off) { _ in /* 662 */
-                    print("Download Tapped") /* 663 */
+//                    print("Download Tapped") /* 663 */
+                    self?.downloadTitleAt(indexPath: indexPath) /* 668 */
                 }
                 return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction]) /* 664 */
             }
         
         return config /* 665 */
     }
+    
     
 }
