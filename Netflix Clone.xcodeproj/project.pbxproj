@@ -27,6 +27,7 @@
 		BAAE42F12A172AF90002F97B /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BAAE42F02A172AF90002F97B /* SDWebImageMapKit */; };
 		BAAE42F32A1734D10002F97B /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F22A1734D10002F97B /* TitleTableViewCell.swift */; };
 		BAAE42F52A1737370002F97B /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F42A1737370002F97B /* TitleViewModel.swift */; };
+		BAAE42F72A1744240002F97B /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		BAAE42EB2A1728090002F97B /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		BAAE42F22A1734D10002F97B /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		BAAE42F42A1737370002F97B /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
+		BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +94,6 @@
 				BAAE42D12A1645700002F97B /* Controllers */,
 				BAAE42BD2A16434A0002F97B /* AppDelegate.swift */,
 				BAAE42BF2A16434A0002F97B /* SceneDelegate.swift */,
-				BAAE42C12A16434A0002F97B /* MainTabBarViewController.swift */,
 				BAAE42C62A16434C0002F97B /* Assets.xcassets */,
 				BAAE42C82A16434C0002F97B /* LaunchScreen.storyboard */,
 				BAAE42CB2A16434C0002F97B /* Info.plist */,
@@ -103,10 +104,8 @@
 		BAAE42D12A1645700002F97B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BAAE42D22A1645840002F97B /* HomeViewController.swift */,
-				BAAE42D42A1645A30002F97B /* UpcomingViewController.swift */,
-				BAAE42D62A1645C10002F97B /* SearchViewController.swift */,
-				BAAE42D82A1645DC0002F97B /* DownloadsViewController.swift */,
+				BAAE42F92A1744830002F97B /* General */,
+				BAAE42F82A1744610002F97B /* Core */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -153,6 +152,26 @@
 				BAAE42E32A166B630002F97B /* APICaller.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		BAAE42F82A1744610002F97B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				BAAE42D22A1645840002F97B /* HomeViewController.swift */,
+				BAAE42D42A1645A30002F97B /* UpcomingViewController.swift */,
+				BAAE42D62A1645C10002F97B /* SearchViewController.swift */,
+				BAAE42C12A16434A0002F97B /* MainTabBarViewController.swift */,
+				BAAE42D82A1645DC0002F97B /* DownloadsViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		BAAE42F92A1744830002F97B /* General */ = {
+			isa = PBXGroup;
+			children = (
+				BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAAE42D72A1645C10002F97B /* SearchViewController.swift in Sources */,
+				BAAE42F72A1744240002F97B /* SearchResultsViewController.swift in Sources */,
 				BAAE42C22A16434A0002F97B /* MainTabBarViewController.swift in Sources */,
 				BAAE42E02A164DBC0002F97B /* CollectionViewTableViewCell.swift in Sources */,
 				BAAE42E42A166B630002F97B /* APICaller.swift in Sources */,
