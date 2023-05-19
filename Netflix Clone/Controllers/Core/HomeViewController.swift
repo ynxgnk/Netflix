@@ -39,6 +39,8 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500)) /* 91 */
         homeFeedTable.tableHeaderView = headerView /* 92 */
         
+//        APICaller.shared.getMovie(with: "Harry Potter") { result in /* 504 */}
+        
 //        fetchData() /* 169 */
     }
     

@@ -67,4 +67,23 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { /* 71 */
         return titles.count /* 292 */
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { /* 514 */
+        collectionView.deselectItem(at: indexPath, animated: true) /* 515 */
+        
+        let title = titles[indexPath.row] /* 516 */
+        guard let titleName = title.original_name ?? title.original_title else { /* 517 */
+            return /* 518 */
+        }
+        
+        APICaller.shared.getMovie(with: titleName + " trailer") { result in /* 519 */
+            switch result { /* 520 */
+            case .success(let videoElement): /* 521 */
+                print(videoElement.id) /* 523 */
+            case .failure(let error): /* 522 */
+                print(error.localizedDescription) /* 523 */
+            }
+        }
+    }
+    
 }

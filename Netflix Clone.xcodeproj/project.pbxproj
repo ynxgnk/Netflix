@@ -28,6 +28,8 @@
 		BAAE42F32A1734D10002F97B /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F22A1734D10002F97B /* TitleTableViewCell.swift */; };
 		BAAE42F52A1737370002F97B /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F42A1737370002F97B /* TitleViewModel.swift */; };
 		BAAE42F72A1744240002F97B /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */; };
+		BAAE42FB2A1750E70002F97B /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */; };
+		BAAE42FD2A17547B0002F97B /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		BAAE42F22A1734D10002F97B /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		BAAE42F42A1737370002F97B /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		BAAE42F62A1744240002F97B /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
+		BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 			children = (
 				BAAE42E52A166E540002F97B /* Title.swift */,
 				BAAE42E92A171D7A0002F97B /* Tv.swift */,
+				BAAE42FA2A1750E70002F97B /* YoutubeSearchResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 				BAAE42D62A1645C10002F97B /* SearchViewController.swift */,
 				BAAE42C12A16434A0002F97B /* MainTabBarViewController.swift */,
 				BAAE42D82A1645DC0002F97B /* DownloadsViewController.swift */,
+				BAAE42FC2A17547B0002F97B /* TitlePreviewViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -260,9 +266,11 @@
 				BAAE42D92A1645DC0002F97B /* DownloadsViewController.swift in Sources */,
 				BAAE42BE2A16434A0002F97B /* AppDelegate.swift in Sources */,
 				BAAE42EC2A1728090002F97B /* TitleCollectionViewCell.swift in Sources */,
+				BAAE42FD2A17547B0002F97B /* TitlePreviewViewController.swift in Sources */,
 				BAAE42E82A171AB50002F97B /* Extensions.swift in Sources */,
 				BAAE42C02A16434A0002F97B /* SceneDelegate.swift in Sources */,
 				BAAE42F32A1734D10002F97B /* TitleTableViewCell.swift in Sources */,
+				BAAE42FB2A1750E70002F97B /* YoutubeSearchResponse.swift in Sources */,
 				BAAE42D52A1645A30002F97B /* UpcomingViewController.swift in Sources */,
 				BAAE42E62A166E540002F97B /* Title.swift in Sources */,
 				BAAE42F52A1737370002F97B /* TitleViewModel.swift in Sources */,

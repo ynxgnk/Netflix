@@ -10,6 +10,8 @@ import Foundation
 struct Constants { /* 153 */
     static let API_KEY = "06fe031f3d1907efe49a957b8bcf0126" /* 154 */
     static let baseURL = "https://api.themoviedb.org" /* 156 */
+    static let YoutubeAPI_KEY = "AIzaSyAFVVo6S7DZS7svu9ccFUZrQP4WwZ9sfzM" /* 491 */
+    static let YoutubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?" /* 493 */
 }
 
 enum APIError: Error { /* 175 */
@@ -146,6 +148,7 @@ class APICaller { /* 151 */
         guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)") else { /* 462 */
             return /* 463 */
         }
+        
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data , _, error in /* 464 */
             guard let data = data, error == nil else { /* 465 */
                 return /* 466 */
@@ -161,5 +164,29 @@ class APICaller { /* 151 */
         }
         task.resume() /* 472 */
     }
+    
+    func getMovie(with query: String, completion: @escaping (Result<VideoElement, Error>) -> Void) { /* 492 */
+        
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }/* 495 */
+        guard let url = URL(string: "\(Constants.YoutubeBaseURL)q=\(query)&key=\(Constants.YoutubeAPI_KEY)") else { return } /* 494 */
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data , _, error in /* 495 */
+            guard let data = data, error == nil else { /* 496 */
+                return /* 497 */
+            }
+            
+            do { /* 498 */
+//                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) /* 499 */
+                let results = try JSONDecoder().decode(YoutubeSearchResponse.self, from: data) /* 511 */
+                completion(.success(results.items[0])) /* 512 */
+//                print(results) /* 500 */
+            }
+            catch { /* 501 */
+                completion(.failure(error)) /* 513 */
+                print(error.localizedDescription) /* 502 */
+            }
+        }
+        task.resume() /* 503 */
+    }
+    
 }
 
