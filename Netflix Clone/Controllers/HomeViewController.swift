@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sectionTitles: [String] = ["Trending Movies", "Popular", "Trending Tv", "Upcoming Movies", "Top Rated"] /* 140 */
+    let sectionTitles: [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top Rated"] /* 140 */
     
     private let homeFeedTable: UITableView = { /* 25 */
         let table = UITableView(frame: .zero, style: .grouped) /* 26 */
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500)) /* 91 */
         homeFeedTable.tableHeaderView = headerView /* 92 */
         
-        getTrendingMovies() /* 169 */
+        fetchData() /* 169 */
     }
     
     private func configureNavbar() { /* 127 */
@@ -52,14 +52,30 @@ class HomeViewController: UIViewController {
         homeFeedTable.frame = view.bounds /* 32 */
     }
     
-    private func getTrendingMovies() { /* 167 */
-        APICaller.shared.getTrendingMovies { results in /* 168 */
-            switch results { /* 179 */
-            case .success(let movies): /* 180 */
-                print(movies)
-            case .failure(let error): /* 180 */
-                print(error)
-            }
+    private func fetchData() { /* 167 */
+//        APICaller.shared.getTrendingMovies { results in /* 168 */
+//            switch results { /* 179 */
+//            case .success(let movies): /* 180 */
+//                print(movies)
+//            case .failure(let error): /* 180 */
+//                print(error)
+//            }
+//        }
+        
+//        APICaller.shared.getTrendingTvs { results in /* 197 */
+//
+//        }
+        
+//        APICaller.shared.getUpcomingMovies { _ in /* 214 */
+//
+//        }
+        
+//        APICaller.shared.getPopular { _ in /* 225 */
+//
+//        }
+        
+        APICaller.shared.getTopRated { _ in /* 237 */
+            
         }
     }
     
@@ -105,7 +121,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource { /* 35
             height: header.bounds.height
         ) /* 148 */
         header.textLabel?.textColor = .white /* 149 */
-        header.textLabel?.text = header.textLabel?.text?.lowercased() /* 150 */
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter() /* 150 */ /* 185 add capitalizeFirstLetter r*/
         
     }
     
