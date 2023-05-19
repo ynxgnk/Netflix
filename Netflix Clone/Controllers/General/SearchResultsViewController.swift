@@ -9,9 +9,9 @@ import UIKit
 
 class SearchResultsViewController: UIViewController {
     
-    private var titles: [Title] = [Title]() /* 450 */
+    public var titles: [Title] = [Title]() /* 450 */
     
-    private let searchResultsCollectionView: UICollectionView = { /* 441 */
+    public let searchResultsCollectionView: UICollectionView = { /* 441 */
         let layout = UICollectionViewFlowLayout() /* 442 */
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width/3 - 10, height: 200) /* 442 */
         layout.minimumInteritemSpacing = 0 /* 460 */
@@ -40,7 +40,7 @@ class SearchResultsViewController: UIViewController {
 
 extension SearchResultsViewController: UICollectionViewDelegate, UICollectionViewDataSource { /* 453 */
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { /* 454 */
-        10
+        return titles.count /* 488 */
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell { /* 455 */
@@ -48,7 +48,9 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell() /* 457 */
         }
         
-        cell.backgroundColor = .blue /* 458 */
+//        cell.backgroundColor = .blue /* 458 */
+        let title = titles[indexPath.row] /* 489 */
+        cell.configure(with: title.poster_path ?? "") /* 490 */
         return cell /* 459 */
     }
 }

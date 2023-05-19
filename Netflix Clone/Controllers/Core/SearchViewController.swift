@@ -9,7 +9,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    private var titles: [Title] = [Title]() /* 417 */
+    public var titles: [Title] = [Title]() /* 417 */
     
     private let discoverTable: UITableView = { /* 389 */
         let table = UITableView() /* 390 */
@@ -41,6 +41,8 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white /* 440 */
         
         fetchDiscoverMovies() /* 419 */
+        
+        searchController.searchResultsUpdater = self /* 475 */
     }
     
     private func fetchDiscoverMovies() { /* 418 */
@@ -82,5 +84,30 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource { /* 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { /* 431 */
         return 150 /* 432 */
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating { /* 476 */
+    func updateSearchResults(for searchController: UISearchController) { /* 477 */
+        let searchBar = searchController.searchBar /* 478 */
+        
+        guard let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultsController = searchController.searchResultsController as? SearchResultsViewController else { /* 479 */
+            return /* 480 */
+        }
+        
+        APICaller.shared.search(with: query) { result in /* 481 */
+            DispatchQueue.main.async { /* 482 */
+                switch result { /* 483 */
+                case .success(let titles): /* 484 */
+                    resultsController.titles = titles /* 485 */
+                    resultsController.searchResultsCollectionView.reloadData() /* 486 */
+                case .failure(let error): /* 484 */
+                    print(error.localizedDescription) /* 487 */
+                }
+            }
+        }
     }
 }

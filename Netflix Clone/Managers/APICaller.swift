@@ -136,5 +136,30 @@ class APICaller { /* 151 */
         }
         task.resume() /* 416 */
     }
+    
+    func search(with query: String, completion: @escaping (Result<[Title], Error>) -> Void) { /* 461 */
+        
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { /* 473 */
+            return /* 474 */
+        }
+        
+        guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)") else { /* 462 */
+            return /* 463 */
+        }
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data , _, error in /* 464 */
+            guard let data = data, error == nil else { /* 465 */
+                return /* 466 */
+            }
+            
+            do { /* 467 */
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data) /* 468 */
+                completion(.success(results.results)) /* 469 */
+            }
+            catch { /* 470 */
+                completion(.failure(APIError.failedToGetData)) /* 471 */
+            }
+        }
+        task.resume() /* 472 */
+    }
 }
 
