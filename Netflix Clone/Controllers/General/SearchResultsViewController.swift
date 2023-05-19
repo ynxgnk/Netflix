@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol SearchResultsViewControllerDelegate: AnyObject { /* 641 */
+    func searchResultsViewControllerDidTapItem(_ viewModel: TitlePreviewViewModel) /* 642 */
+}
+
 class SearchResultsViewController: UIViewController {
     
     public var titles: [Title] = [Title]() /* 450 */
+    
+    public weak var delegate: SearchResultsViewControllerDelegate? /* 643 */
     
     public let searchResultsCollectionView: UICollectionView = { /* 441 */
         let layout = UICollectionViewFlowLayout() /* 442 */
@@ -52,5 +58,21 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
         let title = titles[indexPath.row] /* 489 */
         cell.configure(with: title.poster_path ?? "") /* 490 */
         return cell /* 459 */
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) { /* 644 */
+        collectionView.deselectItem(at: indexPath, animated: true) /* 645 */
+        
+        let title = titles[indexPath.row] /* 646 */
+        let titleName = title.original_title ?? "" /* 652 */
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in /* 648 */
+            switch result { /* 649 */
+            case .success(let videoElement): /* 650 */
+                self?.delegate?.searchResultsViewControllerDidTapItem(TitlePreviewViewModel(title: titleName, yutubeView: videoElement, titleOverview: title.overview ?? "")) /* 647 */
+            case .failure(let error): /* 650 */
+                print(error.localizedDescription) /* 651 */
+            
+            }
+        }
     }
 }

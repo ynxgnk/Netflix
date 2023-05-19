@@ -102,4 +102,22 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource, UICollectionV
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? { /* 660 to download title with long animation */
+        let config = UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil) { _ in /* 661 */
+                let downloadAction = UIAction(title: "Download",
+                                              subtitle: nil,
+                                              image: nil,
+                                              identifier: nil,
+                                              discoverabilityTitle: nil,
+                                              state: .off) { _ in /* 662 */
+                    print("Download Tapped") /* 663 */
+                }
+                return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction]) /* 664 */
+            }
+        
+        return config /* 665 */
+    }
+    
 }
